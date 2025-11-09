@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>학교 세균 위험도 예측</title>
+  <title>🐦‍⬛학교 세균 위험도 예측🐦‍⬛</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
@@ -15,7 +15,7 @@
       --border: #ffe0f0;
       --radius-xl: 26px;
       --radius-md: 14px;
-      --shadow-soft: 0 14px 40px rgba(255, 158, 205, 0.25);
+      --shadow-soft: 0 14px 40px rgba(255, 158, 205, 0.18);
       --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif;
       --transition-fast: 0.18s ease-out;
     }
@@ -29,77 +29,286 @@
         radial-gradient(circle at top right, #e4fbff 0, transparent 55%),
         #fff7fb;
       min-height: 100vh;
-      padding: 24px 14px;
+      padding: 32px 18px;
       display: flex;
       justify-content: center;
       color: var(--text-main);
     }
 
-    .wrapper { width: 100%; max-width: 900px; margin: auto; }
+    .wrapper {
+      width: 100%;
+      max-width: 1100px;
+      margin: auto;
+    }
 
     .title-wrap {
+      text-align: center;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      margin-bottom: 18px;
-      text-align: center;
+      gap: 10px;
+      margin-bottom: 26px;
     }
 
     .pill-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 10px;
+      padding: 6px 14px;
       border-radius: 999px;
       background: #ffffff;
       border: 1px solid #ffe0f0;
       font-size: 11px;
       color: var(--text-sub);
-      box-shadow: 0 5px 14px rgba(255, 191, 219, 0.4);
+      box-shadow: 0 5px 14px rgba(255, 191, 219, 0.35);
       margin: 0 auto;
     }
 
-    .pill-badge span.dot {
-      width: 7px; height: 7px; border-radius: 999px; background: #ff9ecd;
+    .pill-badge .dot {
+      width: 7px; height: 7px;
+      border-radius: 999px;
+      background: #ff9ecd;
     }
 
     h1 {
-      font-size: 26px; font-weight: 800; letter-spacing: -0.02em;
-      display: flex; align-items: center; justify-content: center; gap: 6px;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
     }
 
     h1 span { color: #ff66aa; }
-    h1 .emoji { font-size: 26px; }
+    h1 .emoji { font-size: 28px; }
 
     .subtitle {
-      font-size: 12px; color: var(--text-sub); line-height: 1.5;
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.7;
     }
 
     .layout {
       display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(220px, 2fr);
-      gap: 14px;
-      margin-top: 10px;
+      grid-template-columns: minmax(0, 1.9fr) minmax(260px, 1.4fr);
+      gap: 20px;
+      align-items: flex-start;
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 820px) {
       .layout { grid-template-columns: 1fr; }
     }
 
     .card {
       background: #ffffff;
       border-radius: var(--radius-xl);
-      padding: 16px 16px 14px;
+      padding: 22px 22px 18px;
       border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
       position: relative;
       overflow: hidden;
     }
 
-    /* 이하 기존 CSS 그대로 유지 */
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-title .emoji { font-size: 18px; }
+
+    .card-desc {
+      font-size: 11px;
+      color: var(--text-sub);
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    .tiny-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      border: 1px solid #ffd1ea;
+      font-size: 9px;
+      color: #ff6fae;
+      white-space: nowrap;
+    }
+
+    label {
+      font-size: 11px;
+      color: var(--text-sub);
+      margin-bottom: 4px;
+      display: block;
+      margin-top: 4px;
+    }
+
+    select,
+    input[type="number"] {
+      width: 100%;
+      padding: 8px 10px;
+      margin-bottom: 10px;
+      border-radius: var(--radius-md);
+      border: 1px solid #ffe3f2;
+      background: #fffafd;
+      font-size: 12px;
+      color: var(--text-main);
+      outline: none;
+      transition: all var(--transition-fast);
+    }
+
+    select:focus,
+    input[type="number"]:focus {
+      border-color: #ff9ecd;
+      box-shadow: 0 0 0 2px rgba(255, 158, 205, 0.14);
+      transform: translateY(-1px);
+      background: #ffffff;
+    }
+
+    button {
+      width: 180px;
+      padding: 9px 10px;
+      margin: 4px 0 4px;
+      border-radius: 20px;
+      border: none;
+      background: linear-gradient(90deg, #ff9ecd, #ffc773);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(255, 158, 205, 0.4);
+      transition: all var(--transition-fast);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(255, 158, 205, 0.55);
+    }
+
+    button:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 6px 16px rgba(255, 158, 205, 0.45);
+    }
+
+    .result-card {
+      margin-top: 12px;
+      padding: 10px 12px 9px;
+      border-radius: 18px;
+      background: linear-gradient(
+        135deg,
+        #fff9fd,
+        #ffeaf5
+      );
+      border: 1px solid #ffd5ea;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .result-label {
+      font-size: 10px;
+      color: var(--text-sub);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .result-label .icon { font-size: 13px; }
+
+    .result-main {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .result-main span {
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .tag-high { background: #ffe4d5; color: #ff5a5a; }
+    .tag-mid { background: #fff3c4; color: #f59e0b; }
+    .tag-low { background: #dbffe8; color: #22c55e; }
+
+    .result-sub {
+      font-size: 9px;
+      color: var(--text-sub);
+    }
+
+    .note {
+      margin-top: 10px;
+      font-size: 10px;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    .note b { color: #ff6fae; }
+
+    .side-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .side-title span { font-size: 17px; }
+
+    .side-list {
+      list-style: none;
+      font-size: 10px;
+      color: var(--text-sub);
+      display: grid;
+      gap: 6px;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .side-list b { color: #ff6fae; }
+
+    .side-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #fff9ff;
+      border: 1px solid #ffe3f5;
+      font-size: 9px;
+      color: var(--text-sub);
+    }
+
+    .side-tag .dot {
+      width: 6px; height: 6px;
+      border-radius: 999px;
+      background: var(--mint);
+    }
+
+    .corner-label {
+      position: absolute;
+      right: 14px;
+      bottom: 10px;
+      font-size: 8px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid #ffdff2;
+      color: #ff6fae;
+      backdrop-filter: blur(4px);
+    }
   </style>
 </head>
-
 <body>
   <div class="wrapper">
     <div class="title-wrap">
@@ -107,31 +316,29 @@
         <span class="dot"></span>
         진공탐프 · 세균 실험 + AI 웹앱
       </div>
-      <h1>
-        <span class="emoji">🐘</span>
-        학교 <span>세균 위험도</span> 예측기 🐘
-      </h1>
+      <h1><span class="emoji">🐄</span> 학교 <span>세균 위험도</span> 예측기🐄</h1>
       <p class="subtitle">
-        우리 아이들이 ^^ 직접 만든 소중하고 따뜻한 ai 아이, 백복이예요.
-        장소와 환경을 선택하면 예상 <b>세균 위험도(high/mid/low)</b>를 알려드려요.
+        우리 아이들이 직접 만든 학습용 AI!<br />
+        실제 실험 데이터(집락 수 + 환경 정보)를 기반으로
+        <b>세균 위험도(high/mid/low)</b>를 예측해 보아요.
       </p>
     </div>
 
     <div class="layout">
+      <!-- 왼쪽 -->
       <div class="card">
         <div class="card-header">
           <div>
             <div class="card-title">
-              <span class="emoji">🐄</span> 오늘의 환경 입력하기
+              <span class="emoji">🐘</span> 오늘의 환경 입력하기🐘
             </div>
             <div class="card-desc">
-              실제 우리 학교에서 썼던 기준으로 위험도를 추정해 줍니다.
+              우리 학교에서 실험했던 기준을 그대로 사용해 위험도를 추정합니다.
             </div>
           </div>
           <div class="tiny-pill">Logistic Regression 기반</div>
         </div>
 
-        <!-- 폼 요소 그대로 유지 -->
         <label>장소 유형</label>
         <select id="place_type">
           <option value="화장실">화장실</option>
@@ -176,35 +383,39 @@
         <button onclick="predictRisk()">위험도 예측하기 💡</button>
 
         <div class="result-card">
-          <div class="result-label"><span class="icon">📊</span> 예측 결과</div>
+          <div class="result-label">
+            <span class="icon">🐲</span> 예측 결과
+          </div>
           <div id="result" class="result-main">입력 후 버튼을 눌러주세요</div>
           <div id="detail" class="result-sub"></div>
         </div>
 
         <p class="note">
-          이 모델은 <b>진로 공동체 탐구 프로젝트</b>를 위해 만든
-          <b>학습용 AI</b>입니다. 실제 방역 기준을 대신하지 않고,
-          어느 구역을 더 깨끗이 관리하면 좋을지 참고용 지표로 사용합니다 :)
+          이 웹앱은 <b>진로 공동체 탐구 프로젝트</b>에서 만든
+          <b>학습용 AI 도구</b>입니다. 실제 방역 기준을 대신하지 않고,
+          “어디를 더 신경 쓰면 좋을지”를 알려주는 참고용 지표예요.
         </p>
       </div>
 
-      <!-- 오른쪽: 설명 -->
+      <!-- 오른쪽 -->
       <div class="card">
         <div class="side-title">
-          <span>🐲🐲</span> 이 웹앱, 어떻게 만들었냐구요?! 백복이가 설명 쉽게 해드릴게요
+          <span>🧪</span> 이 웹앱, 이렇게 만들었어요!
         </div>
         <ul class="side-list">
           <li>① 교내 여러 장소에서 면봉으로 세균을 채취해 배지에서 <b>집락 수</b>를 세었어요.</li>
-          <li>② 장소 유형, 사람 왕래, 손 접촉, 청결, 습도와 함께 <b>위험도 라벨(high/mid/low)</b>을 정해 <b>데이터셋</b>을 만들었어요.</li>
+          <li>② 장소 유형·사람 왕래·손 접촉·청결·습도와 함께
+            <b>위험도 라벨(high/mid/low)</b>을 붙여 <b>데이터셋</b>을 만들었어요.</li>
           <li>③ 그 데이터를 이용해 Python에서 <b>Logistic Regression</b> 모델을 학습시켰어요.</li>
-          <li>④ 학습된 모델을 Flask 서버에 올리고, HTML/CSS/JS 화면과 연결해서 지금 이 <b>세균 위험도 예측기</b>가 완성됐어요!</li>
+          <li>④ 학습된 모델을 Flask 서버에 올리고,
+            이 화면(HTML/CSS/JS)과 연결해서 지금 이 <b>세균 위험도 예측기</b>가 완성됐어요!</li>
         </ul>
         <div class="side-tag">
           <span class="dot"></span>
-          세균 실험 · 데이터 분석 · AI 활용까지 직접 경험한 프로젝트..!
+          세균 실험 · 데이터 분석 · AI까지 직접 해본 우리 팀의 결과물 짜라란
         </div>
         <div class="corner-label">
-          made by 우리 팀 🍑 그리고 백복이....
+          made by 우리 팀 🍑 & 백복이
         </div>
       </div>
     </div>
@@ -227,8 +438,8 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data)
         });
-
         const json = await res.json();
+
         const resultEl = document.getElementById("result");
         const detailEl = document.getElementById("detail");
 
@@ -239,19 +450,24 @@
         }
 
         const label = (json.risk_label || "").toLowerCase();
-        const conf = json.confidence ? (json.confidence * 100).toFixed(1) : null;
+        const conf = typeof json.confidence === "number"
+          ? (json.confidence * 100).toFixed(1)
+          : null;
 
         let tagClass = "tag-low";
         if (label === "high") tagClass = "tag-high";
         else if (label === "mid" || label === "medium") tagClass = "tag-mid";
 
         resultEl.innerHTML = `예측 위험도: <span class="${tagClass}">${label}</span>`;
-        detailEl.textContent = conf ? `신뢰도 약 ${conf}% 수준이에요.` : "";
+        detailEl.textContent = conf
+          ? `학습 데이터 기준, 약 ${conf}% 신뢰도로 이렇게 분류되었어요.`
+          : "";
       } catch (e) {
-        document.getElementById("result").textContent = "서버 통신 오류 💦";
+        document.getElementById("result").textContent =
+          "서버랑 통신하는 중 문제가 생겼어요 💦 다시 실행해 주세요.";
+        document.getElementById("detail").textContent = "";
       }
     }
   </script>
 </body>
 </html>
-
