@@ -6,103 +6,116 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
-      --bg: #0f172a;
-      --card-bg: #111827;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.12);
-      --text-main: #e5e7eb;
-      --text-sub: #9ca3af;
-      --danger: #f97316;
-      --border: #1f2937;
-      --radius-xl: 24px;
+      --bg: #fff7fb;
+      --primary: #ff9ecd;
+      --primary-soft: rgba(255, 158, 205, 0.16);
+      --mint: #8be3d9;
+      --text-main: #252525;
+      --text-sub: #7b7b88;
+      --border: #ffe0f0;
+      --radius-xl: 26px;
       --radius-md: 14px;
+      --shadow-soft: 0 14px 40px rgba(255, 158, 205, 0.25);
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif;
       --transition-fast: 0.18s ease-out;
-      --font-main: -apple-system, BlinkMacSystemFont, system-ui, -system-ui, sans-serif;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
       font-family: var(--font-main);
-      background: radial-gradient(circle at top, #111827 0, #020817 40%, #000 100%);
-      color: var(--text-main);
+      background:
+        radial-gradient(circle at top left, #ffe4f2 0, transparent 60%),
+        radial-gradient(circle at top right, #e4fbff 0, transparent 55%),
+        #fff7fb;
       min-height: 100vh;
+      padding: 24px 14px;
       display: flex;
       justify-content: center;
-      padding: 32px 16px;
+      color: var(--text-main);
     }
 
     .wrapper {
       width: 100%;
-      max-width: 960px;
+      max-width: 900px;
       margin: auto;
     }
 
-    .title-block {
-      margin-bottom: 22px;
+    .title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 18px;
     }
 
-    .badge {
+    .pill-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       padding: 4px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 253, 0.25);
-      background: rgba(15, 23, 42, 0.85);
+      background: #ffffff;
+      border: 1px solid #ffe0f0;
       font-size: 11px;
       color: var(--text-sub);
+      box-shadow: 0 5px 14px rgba(255, 191, 219, 0.4);
     }
 
-    .badge span.dot {
-      width: 6px;
-      height: 6px;
+    .pill-badge span.dot {
+      width: 7px;
+      height: 7px;
       border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 8px rgba(34, 197, 94, 0.9);
+      background: #ff9ecd;
     }
 
     h1 {
-      font-size: 30px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin: 10px 0 4px;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     h1 span {
-      color: var(--accent);
+      color: #ff66aa;
+    }
+
+    h1 .emoji {
+      font-size: 26px;
     }
 
     .subtitle {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text-sub);
       line-height: 1.5;
     }
 
     .layout {
       display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(230px, 2fr);
-      gap: 18px;
-      margin-top: 22px;
+      grid-template-columns: minmax(0, 3fr) minmax(220px, 2fr);
+      gap: 14px;
+      margin-top: 10px;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 720px) {
       .layout {
         grid-template-columns: 1fr;
       }
     }
 
     .card {
-      background: var(--card-bg);
+      background: #ffffff;
       border-radius: var(--radius-xl);
+      padding: 16px 16px 14px;
       border: 1px solid var(--border);
-      padding: 18px 18px 16px;
-      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
     }
 
     .card-header {
@@ -110,31 +123,39 @@
       justify-content: space-between;
       align-items: baseline;
       gap: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .card-title {
-      font-size: 16px;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .card-title span.emoji {
+      font-size: 18px;
     }
 
     .card-desc {
-      font-size: 11px;
+      font-size: 10px;
       color: var(--text-sub);
     }
 
-    .pill {
-      font-size: 10px;
+    .tiny-pill {
       padding: 3px 9px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 253, 0.3);
-      color: var(--accent);
+      background: var(--primary-soft);
+      border: 1px solid #ffd1ea;
+      font-size: 9px;
+      color: #ff6fae;
     }
 
     label {
-      font-size: 11px;
+      font-size: 10px;
       color: var(--text-sub);
-      margin-bottom: 4px;
+      margin-bottom: 3px;
       display: inline-block;
     }
 
@@ -142,261 +163,289 @@
     input[type="number"] {
       width: 100%;
       padding: 7px 9px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       border-radius: var(--radius-md);
-      border: 1px solid var(--border);
-      background: #020817;
-      color: var(--text-main);
+      border: 1px solid #ffe3f2;
+      background: #fffafd;
       font-size: 12px;
+      color: var(--text-main);
       outline: none;
-      transition: border var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast), background var(--transition-fast);
+      transition: all var(--transition-fast);
     }
 
     select:focus,
     input[type="number"]:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.12);
+      border-color: #ff9ecd;
+      box-shadow: 0 0 0 2px rgba(255, 158, 205, 0.14);
       transform: translateY(-1px);
-      background: #020817;
+      background: #ffffff;
     }
 
     button {
       width: 100%;
-      margin-top: 4px;
       padding: 9px 10px;
-      border-radius: 14px;
+      margin-top: 2px;
+      border-radius: 18px;
       border: none;
-      background: linear-gradient(90deg, var(--accent), #4ade80);
-      color: #020817;
-      font-weight: 600;
+      background: linear-gradient(90deg, #ff9ecd, #ffc773);
+      color: #ffffff;
+      font-weight: 700;
       font-size: 13px;
       cursor: pointer;
+      box-shadow: 0 10px 24px rgba(255, 158, 205, 0.45);
       transition: all var(--transition-fast);
-      box-shadow: 0 10px 26px rgba(56, 189, 248, 0.22);
     }
 
     button:hover {
       transform: translateY(-1px);
-      box-shadow: 0 14px 36px rgba(56, 189, 248, 0.32);
+      box-shadow: 0 14px 30px rgba(255, 158, 205, 0.6);
     }
 
     button:active {
       transform: translateY(1px) scale(0.98);
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.9);
+      box-shadow: 0 5px 14px rgba(255, 158, 205, 0.5);
     }
 
     .result-card {
-      margin-top: 10px;
-      padding: 10px 10px 9px;
-      border-radius: var(--radius-xl);
-      background: radial-gradient(circle at top left, var(--accent-soft), transparent),
-                  #020817;
-      border: 1px solid var(--border);
+      margin-top: 9px;
+      padding: 9px 10px 8px;
+      border-radius: 20px;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 248, 253, 1),
+        rgba(255, 230, 245, 1)
+      );
+      border: 1px solid #ffd5ea;
       display: flex;
       flex-direction: column;
-      gap: 4px;
-      min-height: 70px;
+      gap: 3px;
     }
 
     .result-label {
-      font-size: 11px;
+      font-size: 9px;
       color: var(--text-sub);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .result-label span.icon {
+      font-size: 12px;
     }
 
     .result-main {
-      font-size: 19px;
-      font-weight: 700;
+      font-size: 18px;
+      font-weight: 800;
     }
 
     .result-main span {
       text-transform: uppercase;
+      padding: 1px 8px;
+      border-radius: 999px;
+      font-size: 12px;
     }
 
-    .result-main .high {
-      color: var(--danger);
+    .tag-high {
+      background: #ffe4d5;
+      color: #ff5a5a;
     }
 
-    .result-main .mid {
-      color: var(--accent);
+    .tag-mid {
+      background: #fff3c4;
+      color: #f59e0b;
     }
 
-    .result-main .low {
+    .tag-low {
+      background: #dbffe8;
       color: #22c55e;
     }
 
     .result-sub {
-      font-size: 10px;
+      font-size: 9px;
       color: var(--text-sub);
     }
 
-    .tips {
+    .note {
       margin-top: 6px;
-      font-size: 10px;
+      font-size: 9px;
       color: var(--text-sub);
       line-height: 1.5;
     }
 
-    .tips strong {
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    .side-card {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .side-card h3 {
-      font-size: 13px;
-      margin-bottom: 6px;
+    .note b {
+      color: #ff6fae;
       font-weight: 600;
+    }
+
+    .side-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .side-title span {
+      font-size: 16px;
     }
 
     .side-list {
       list-style: none;
-      font-size: 10px;
+      font-size: 9px;
       color: var(--text-sub);
       display: grid;
       gap: 4px;
       margin-bottom: 6px;
     }
 
-    .side-list li span {
-      color: var(--accent);
-      margin-right: 4px;
+    .side-list li b {
+      color: #ff6fae;
+      font-weight: 600;
     }
 
-    .side-label {
+    .side-tag {
       display: inline-flex;
-      gap: 4px;
       align-items: center;
-      font-size: 9px;
+      gap: 5px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #fff9ff;
+      border: 1px solid #ffe3f5;
+      font-size: 8px;
       color: var(--text-sub);
-      opacity: 0.85;
     }
 
-    .side-label .dot {
+    .side-tag span.dot {
       width: 6px;
       height: 6px;
       border-radius: 999px;
-      background: var(--accent);
+      background: var(--mint);
     }
 
-    .side-float {
+    .corner-label {
       position: absolute;
-      right: -6px;
-      bottom: -6px;
-      padding: 4px 7px;
-      border-radius: 16px;
+      right: 10px;
+      bottom: 8px;
       font-size: 8px;
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(148, 163, 253, 0.3);
-      color: var(--accent);
-      backdrop-filter: blur(8px);
+      padding: 4px 7px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #ffdff2;
+      color: #ff6fae;
+      backdrop-filter: blur(4px);
     }
   </style>
 </head>
 <body>
   <div class="wrapper">
-    <div class="title-block">
-      <div class="badge">
+    <div class="title-wrap">
+      <div class="pill-badge">
         <span class="dot"></span>
-        진공탐프 — 세균 조사 × AI 위험도 예측
+        진공탐프 · 세균 실험 + AI 웹앱
       </div>
-      <h1>학교 <span>세균 위험도</span> 예측 웹앱</h1>
+      <h1>
+        <span class="emoji">🧫</span>
+        학교 <span>세균 위험도</span> 예측기
+      </h1>
       <p class="subtitle">
-        실제 교내 세균 배양 데이터를 기반으로, 장소·이용 정도·청결 상태 등을 입력하면
-        <b>AI가 위험도(high/mid/low)를 추정</b>해 주는 도구입니다.
+        우리가 직접 배양한 세균 데이터로 만든 작은 AI 도우미예요.
+        장소와 환경을 선택하면 예상 <b>세균 위험도(high/mid/low)</b>를 귀엽게 알려줍니다 ✨
       </p>
     </div>
 
     <div class="layout">
-      <!-- 입력 & 결과 -->
+      <!-- 왼쪽: 입력 -->
       <div class="card">
         <div class="card-header">
           <div>
-            <div class="card-title">위험도 입력값</div>
-            <div class="card-desc">우리 학교 환경을 선택하고 &ldquo;위험도 예측하기&rdquo;를 눌러 보세요.</div>
+            <div class="card-title">
+              <span class="emoji">🔍</span> 오늘의 환경 입력하기
+            </div>
+            <div class="card-desc">
+              실제 우리 학교에서 썼던 기준으로 위험도를 추정해 줍니다.
+            </div>
           </div>
-          <div class="pill">Logistic Regression Model</div>
+          <div class="tiny-pill">Logistic Regression 기반</div>
         </div>
 
-        <div>
-          <label>장소 유형</label>
-          <select id="place_type">
-            <option value="화장실">화장실</option>
-            <option value="출입문">출입문</option>
-            <option value="복도">복도</option>
-            <option value="교실">교실</option>
-            <option value="공용기기">공용기기</option>
-            <option value="기타">기타</option>
-          </select>
+        <label>장소 유형</label>
+        <select id="place_type">
+          <option value="화장실">화장실</option>
+          <option value="출입문">출입문</option>
+          <option value="복도">복도</option>
+          <option value="교실">교실</option>
+          <option value="공용기기">공용기기</option>
+          <option value="기타">기타</option>
+        </select>
 
-          <label>사람 왕래</label>
-          <select id="people_level">
-            <option value="low">low</option>
-            <option value="mid">mid</option>
-            <option value="high" selected>high</option>
-          </select>
+        <label>사람 왕래</label>
+        <select id="people_level">
+          <option value="low">low</option>
+          <option value="mid">mid</option>
+          <option value="high" selected>high</option>
+        </select>
 
-          <label>손 접촉 정도</label>
-          <select id="touch_level">
-            <option value="low">low</option>
-            <option value="mid">mid</option>
-            <option value="high" selected>high</option>
-          </select>
+        <label>손 접촉 정도</label>
+        <select id="touch_level">
+          <option value="low">low</option>
+          <option value="mid">mid</option>
+          <option value="high" selected>high</option>
+        </select>
 
-          <label>청결 상태</label>
-          <select id="clean_level">
-            <option value="low">low</option>
-            <option value="mid" selected>mid</option>
-            <option value="high">high</option>
-          </select>
+        <label>청결 상태</label>
+        <select id="clean_level">
+          <option value="low">low</option>
+          <option value="mid" selected>mid</option>
+          <option value="high">high</option>
+        </select>
 
-          <label>습도</label>
-          <select id="humidity_level">
-            <option value="low">low</option>
-            <option value="mid" selected>mid</option>
-            <option value="high">high</option>
-          </select>
+        <label>습도</label>
+        <select id="humidity_level">
+          <option value="low">low</option>
+          <option value="mid" selected>mid</option>
+          <option value="high">high</option>
+        </select>
 
-          <label>균 집락 수 (CFU, 대략값)</label>
-          <input id="colonies" type="number" min="0" step="10" value="200" />
+        <label>균 집락 수 (CFU, 대략값)</label>
+        <input id="colonies" type="number" min="0" step="10" value="200" />
 
-          <button onclick="predictRisk()">위험도 예측하기</button>
-        </div>
+        <button onclick="predictRisk()">위험도 예측하기 💡</button>
 
         <div class="result-card">
-          <div class="result-label">예측 결과</div>
+          <div class="result-label">
+            <span class="icon">📊</span> 예측 결과
+          </div>
           <div id="result" class="result-main">입력 후 버튼을 눌러주세요</div>
           <div id="detail" class="result-sub"></div>
         </div>
 
-        <div class="tips">
-          ※ 이 모델은 진공탐프 활동을 위해 제작한 <strong>학습용 도구</strong>입니다.
-          실제 방역·위생 기준을 대체하지 않으며, 위험도가 높게 나오는 구역은
-          <strong>손 위생, 청소 주기, 소독</strong>을 우선 점검하는 참고 지표로 사용합니다.
-        </div>
+        <p class="note">
+          이 모델은 <b>진로 공동체 탐구 프로젝트</b>를 위해 만든
+          <b>학습용 AI</b>입니다. 실제 방역 기준을 대신하지 않고,
+          어느 구역을 더 깨끗이 관리하면 좋을지 참고용 지표로 사용합니다 :)
+        </p>
       </div>
 
-      <!-- 사이드: 프로젝트 설명 -->
-      <div class="card side-card">
-        <h3>이 웹앱은 어떻게 만들어졌나요?</h3>
-        <ul class="side-list">
-          <li><span>01</span>교내 화장실·출입문·공용기기 등에서 세균을 채취하고 배양해
-            집락 수를 기록했습니다.</li>
-          <li><span>02</span>장소 유형, 사람 왕래, 접촉 정도, 청결 상태, 습도 등을 함께 정리해
-            <b>학습용 데이터셋</b>을 만들었습니다.</li>
-          <li><span>03</span>그 데이터를 바탕으로 Logistic Regression 모델로
-            <b>위험도(high/mid/low)</b>를 분류하도록 학습시켰습니다.</li>
-          <li><span>04</span>Flask(Python)와 간단한 HTML/CSS/JS를 이용해
-            누구나 웹에서 바로 쓸 수 있는 <b>AI 웹앱</b>으로 배포했습니다.</li>
-        </ul>
-        <div class="side-label">
-          <div class="dot"></div> Project: 진로 공동체 탐구 &lt;진공탐프&gt;
+      <!-- 오른쪽: 프로젝트 설명 -->
+      <div class="card">
+        <div class="side-title">
+          <span>🧪</span> 이 웹앱, 이렇게 만들었어요
         </div>
-        <div class="side-float">
-          세균 실험 + 데이터 분석 + AI 활용
+        <ul class="side-list">
+          <li>① 교내 여러 장소에서 면봉으로 세균을 채취해 배지에서 <b>집락 수</b>를 세었어요.</li>
+          <li>② 장소 유형, 사람 왕래, 손 접촉, 청결, 습도와 함께
+            <b>위험도 라벨(high/mid/low)</b>을 정해 <b>데이터셋</b>을 만들었어요.</li>
+          <li>③ 그 데이터를 이용해 Python에서 <b>Logistic Regression</b> 모델을 학습시켰어요.</li>
+          <li>④ 학습된 모델을 Flask 서버에 올리고,
+            귀여운 HTML/CSS/JS 화면과 연결해서 지금 이 <b>세균 위험도 예측기</b>가 완성됐어요!</li>
+        </ul>
+        <div class="side-tag">
+          <span class="dot"></span>
+          세균 실험 · 데이터 분석 · AI 활용까지 직접 경험한 프로젝트
+        </div>
+        <div class="corner-label">
+          made by 우리 팀 🍑
         </div>
       </div>
     </div>
@@ -421,7 +470,6 @@
         });
 
         const json = await res.json();
-
         const resultEl = document.getElementById("result");
         const detailEl = document.getElementById("detail");
 
@@ -433,25 +481,33 @@
         }
 
         const label = (json.risk_label || "").toLowerCase();
-        const conf = json.confidence !== undefined
-          ? (json.confidence * 100).toFixed(1)
+        const confRaw = json.confidence;
+        const conf = typeof confRaw === "number"
+          ? (confRaw * 100).toFixed(1)
           : null;
 
-        let cls = "";
-        if (label === "high") cls = "high";
-        else if (label === "mid" || label === "medium") cls = "mid";
-        else cls = "low";
+        let tagClass = "tag-low";
+        let textLabel = "low";
 
-        resultEl.innerHTML = `예측 위험도: <span class="${cls}">${label}</span>`;
+        if (label === "high") {
+          tagClass = "tag-high";
+          textLabel = "high";
+        } else if (label === "mid" || label === "medium") {
+          tagClass = "tag-mid";
+          textLabel = "mid";
+        }
+
+        resultEl.innerHTML = `예측 위험도: <span class="${tagClass}">${textLabel}</span>`;
         if (conf) {
-          detailEl.textContent = `이 조합의 패턴이 학습 데이터에서 유사하게 관측된 비율을 기준으로, 약 ${conf}% 수준의 신뢰도로 예측합니다.`;
+          detailEl.textContent =
+            `이 환경 조합은 학습 데이터 기준 약 ${conf}% 수준의 신뢰도로 이렇게 분류되었어요.`;
         } else {
           detailEl.textContent = "";
         }
       } catch (e) {
         const resultEl = document.getElementById("result");
         const detailEl = document.getElementById("detail");
-        resultEl.textContent = "서버와 통신하는 중 문제가 발생했습니다.";
+        resultEl.textContent = "서버와 통신하는 중 문제가 생겼어요 💦";
         resultEl.className = "result-main";
         detailEl.textContent = "";
       }
